@@ -20,6 +20,7 @@ import { inferFirestoreTimestamp, JSONFirestoreTimestampFormat } from "./firesto
 import { inferJWT, JSONJWTStringFormat } from "./jwt";
 import { inferColor, JSONColorFormat } from "./color";
 import { inferCreditCard, JSONCreditCardFormat } from "./creditCard";
+import { inferBase64, JSONBase64Format } from "./base64";
 
 export {
   JSONHostnameFormat,
@@ -63,7 +64,8 @@ export type JSONStringFormat =
   | JSONSemverFormat
   | JSONJWTStringFormat
   | JSONColorFormat
-  | JSONCreditCardFormat;
+  | JSONCreditCardFormat
+  | JSONBase64Format;
 
 const formats = [
   inferUri,
@@ -86,6 +88,7 @@ const formats = [
   inferJWT,
   inferColor,
   inferCreditCard,
+  inferBase64,
 ];
 
 export function inferFormat(value: string): JSONStringFormat | undefined {

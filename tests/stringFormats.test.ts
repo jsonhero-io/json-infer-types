@@ -824,6 +824,30 @@ describe("credit cards", () => {
   );
 });
 
+describe("base64", () => {
+  test.each([
+    "Pmo9fEtDfWt7T11T",
+    "TG1BdGV8cU9BdHdkK3t6Y35WYmVxMiNiQH40Tw==",
+    "WzBjLiI7VnB2QlRib21denVIbiRj",
+    "VzFiIXhsOj5bIiU5PWhcSXdBdVslIms=",
+    "WzBFRFFOSSxjeFt7aiwo",
+    "fGZydkoqfENQPXt8bDR1Tlx1Kkk6aA==",
+    "LVwkb29bSiojT21HJU1B",
+    "cldpOnRUKy85",
+    "MnhuaVpjU0Zwdz1gZT5iY3ZaUQ==",
+    "amE3Rmg5OTVTbUAwI1J3NTZwK2lMXHxWR1tkJg==",
+  ])("%p should be infered as being a base64 string", (value) => {
+    expect(inferType(value)).toEqual({
+      name: "string",
+      value,
+      format: {
+        name: "base64",
+      },
+    });
+  });
+});
+
+
 describe("without format", () => {
   test.each(["46", "2244994945", "1212092628029698048"])(
     "%p should be inferred as having no format",
