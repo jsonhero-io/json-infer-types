@@ -824,6 +824,54 @@ describe("credit cards", () => {
   );
 });
 
+describe("mac", () => {
+  test.each([
+    "38:EE:4A:47:3A:36",
+    "ad:af:bd:71:12:87",
+  ])("%p should be infered as being a MAC address", (value) => {
+    expect(inferType(value)).toEqual({
+      name: "string",
+      value,
+      format: {
+        name: "mac",
+        variant: "EUI-48",
+        splitter: ":"
+      },
+    });
+  });
+
+  test.each([
+    "38-EE-4A-47-3A-36",
+    "ad-af-bd-71-12-87",
+  ])("%p should be infered as being a MAC address", (value) => {
+    expect(inferType(value)).toEqual({
+      name: "string",
+      value,
+      format: {
+        name: "mac",
+        variant: "EUI-48",
+        splitter: "-"
+      },
+    });
+  });
+
+  test.each([
+    "38.EE.4A.47.3A.36",
+    "ad.af.bd.71.12.87",
+  ])("%p should be infered as being a MAC address", (value) => {
+    expect(inferType(value)).toEqual({
+      name: "string",
+      value,
+      format: {
+        name: "mac",
+        variant: "EUI-48",
+        splitter: "."
+      },
+    });
+  });
+});
+
+
 describe("without format", () => {
   test.each(["46", "2244994945", "1212092628029698048"])(
     "%p should be inferred as having no format",

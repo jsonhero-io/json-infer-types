@@ -1,3 +1,4 @@
+import { inferMAC, JSONMACFormat } from './mac';
 // This is the order the formats will be run in
 import { inferDatetime, JSONDateTimeFormat } from "./datetime";
 import { inferTimestamp, JSONTimestampFormat } from "./timestamp";
@@ -63,7 +64,8 @@ export type JSONStringFormat =
   | JSONSemverFormat
   | JSONJWTStringFormat
   | JSONColorFormat
-  | JSONCreditCardFormat;
+  | JSONCreditCardFormat
+  | JSONMACFormat;
 
 const formats = [
   inferUri,
@@ -86,6 +88,7 @@ const formats = [
   inferJWT,
   inferColor,
   inferCreditCard,
+  inferMAC,
 ];
 
 export function inferFormat(value: string): JSONStringFormat | undefined {
